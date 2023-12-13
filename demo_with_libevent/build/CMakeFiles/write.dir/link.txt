@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -rdynamic CMakeFiles/write.dir/write_fifo.c.o -o write  -levent 

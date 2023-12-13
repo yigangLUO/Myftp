@@ -1,0 +1,1 @@
+/usr/bin/cc  -Wall -rdynamic CMakeFiles/read.dir/read_fifo.c.o -o read  -levent 

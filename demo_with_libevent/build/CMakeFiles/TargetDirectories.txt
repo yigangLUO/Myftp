@@ -1,0 +1,4 @@
+/home/lyg/ftp/demo_with_libevent/build/CMakeFiles/read.dir
+/home/lyg/ftp/demo_with_libevent/build/CMakeFiles/write.dir
+/home/lyg/ftp/demo_with_libevent/build/CMakeFiles/edit_cache.dir
+/home/lyg/ftp/demo_with_libevent/build/CMakeFiles/rebuild_cache.dir
