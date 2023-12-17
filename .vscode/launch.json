@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/lyg/ftp/demo_with_libevent",
-      "program": "/home/lyg/ftp/demo_with_libevent/build/Debug/outDebug",
+      "cwd": "/home/lyg/ftp/ftpSrv",
+      "program": "/home/lyg/ftp/ftpSrv/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

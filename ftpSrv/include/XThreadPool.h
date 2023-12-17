@@ -2,12 +2,15 @@
 #include <vector>
 
 class XThread;
+
 class XTask;
+
 class XThreadPool
 {
 public:
 	// 单例模式
-	static XThreadPool *Get() {
+	static XThreadPool *Get() 
+	{
 		static XThreadPool p;
 		return &p;
 	}
@@ -20,6 +23,10 @@ private:
 	int threadCount;
 	int lastThread = -1;
 	std::vector<XThread *> threads;
-	XThreadPool() {};
+
+	XThreadPool() = default;
+	~XThreadPool() = default;
+	XThreadPool(const XThreadPool &) = delete;
+	XThreadPool &operator=(const XThreadPool &) = delete;
 };
 

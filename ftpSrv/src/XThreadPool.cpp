@@ -10,10 +10,12 @@ using namespace std;
 /*
  *  分配任务到线程池
  */
-void XThreadPool::Dispatch(XTask *task) {
-	testout("main thread At XThreadPoll::dispathch()");
+void XThreadPool::Dispatch(XTask *task) 
+{
+	testout("main thread At XThreadPoll::dispatch()");
 	
-	if (!task) return;
+	if (!task) 
+		return;
 	int tid = (lastThread + 1) % threadCount;
 	lastThread = tid;
 	XThread *t = threads[tid];
@@ -27,11 +29,13 @@ void XThreadPool::Dispatch(XTask *task) {
 /*
  *  初始化线程池
  */
-void XThreadPool::Init(int threadCount) {
+void XThreadPool::Init(int threadCount) 
+{
 	testout("main thread At XThreadPoll::Init()");
 	this->threadCount = threadCount;
 	this->lastThread = -1;
-	for (int i = 0; i < threadCount; i++) {
+	for (int i = 0; i < threadCount; i++) 
+	{
 		cout << "Create thread" << i << endl;
 		XThread *t = new XThread();
 		t->id = i;
@@ -39,5 +43,4 @@ void XThreadPool::Init(int threadCount) {
 		threads.push_back(t);
 		this_thread::sleep_for(chrono::milliseconds(10));
 	}
-
 }

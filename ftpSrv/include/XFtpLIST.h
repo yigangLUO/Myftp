@@ -2,6 +2,7 @@
 #include "XFtpTask.h"
 #include <string>
 using namespace std;
+
 class XFtpLIST : public XFtpTask
 {
 public:

@@ -8,7 +8,8 @@
 #include "testUtil.h"
 // #include "XFtpDELE.h"
  
-XTask *XFtpFactory::CreateTask() {
+XTask *XFtpFactory::CreateTask() 
+{
 	testout("At XFtpFactory::CreateTask");
 	XFtpServerCMD *x = new XFtpServerCMD();
 
@@ -27,8 +28,4 @@ XTask *XFtpFactory::CreateTask() {
 	x->Reg("STOR", new XFtpSTOR());
 	
 	return x;
-}
-
-XFtpFactory::XFtpFactory() {
-
 }

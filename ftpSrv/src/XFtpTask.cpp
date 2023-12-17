@@ -8,13 +8,16 @@
 #include <iostream>
 using namespace std;
 
-void XFtpTask::ConnectoPORT() {
+void XFtpTask::ConnectoPORT() 
+{
 	testout("At XFtpTask::ConnectoPORT");
-	if (cmdTask->ip.empty() || cmdTask->port <= 0 || !cmdTask->base) {
+	if (cmdTask->ip.empty() || cmdTask->port <= 0 || !cmdTask->base) 
+	{
 		cout << "ConnectPORT failed" << endl;
 		return;
 	}
-	if (bev) {
+	if (bev) 
+	{
 		bufferevent_free(bev);
 		bev = 0;
 	}
@@ -25,18 +28,19 @@ void XFtpTask::ConnectoPORT() {
     sin.sin_port = htons(cmdTask->port);
     evutil_inet_pton(AF_INET, cmdTask->ip.c_str(), &sin.sin_addr.s_addr);
 
-	// ��ʵ������Ļص�����(Read��Write��Event)ʵ���趨Ϊ�ص�����
+	// 设置回调函数（Read、Write、Event），其中 this 指针指向当前对象
 	Setcb(bev);
 
-	// ��������ͨ���ĳ�ʱ�¼�
+	// 设置超时时间为 60 秒
 	timeval t = {60, 0};
 	bufferevent_set_timeouts(bev, &t, 0);
 
-	// �������ӿͻ���
+	// 发起连接请求，连接到服务器的 PORT
 	bufferevent_socket_connect(bev, (sockaddr*)&sin, sizeof(sin));
 }
 
-void XFtpTask::ClosePORT() {
+void XFtpTask::ClosePORT() 
+{
 	if (bev) {
 		bufferevent_free(bev);
 		bev = 0;
@@ -47,10 +51,11 @@ void XFtpTask::ClosePORT() {
 	}
 }
 
-void XFtpTask::Setcb(bufferevent *bev) {
-	//���ûص�����, �ص�����������thisָ��ʵ����������������
+void XFtpTask::Setcb(bufferevent *bev) 
+{
+	// 设置回调函数，使用 ReadCB、WriteCB、EventCB 函数作为回调函数
 	bufferevent_setcb(bev, ReadCB, WriteCB, EventCB, this);
-	// ���Ӽ���¼�
+	// 启用 bufferevent 的读写事件
 	bufferevent_enable(bev, EV_READ | EV_WRITE);
 
 }
@@ -69,7 +74,8 @@ void XFtpTask::Send(const char *data, size_t datasize) {
 	}
 }
 
-void XFtpTask::ResCMD(string msg) {
+void XFtpTask::ResCMD(string msg) 
+{
 	testout("At XFtpTask::ResCMD");
 	if (!cmdTask || !cmdTask->bev) return;
 	cout << "ResCMD: " << msg << endl << flush;
@@ -80,20 +86,26 @@ void XFtpTask::ResCMD(string msg) {
 }
 
 
-void XFtpTask::EventCB(bufferevent *bev, short events, void *arg) {
+void XFtpTask::EventCB(bufferevent *bev, short events, void *arg) 
+{
 	XFtpTask *t = (XFtpTask*)arg;
 	t->Event(bev, events);
 }
-void XFtpTask::ReadCB(bufferevent *bev, void *arg) {
+
+void XFtpTask::ReadCB(bufferevent *bev, void *arg) 
+{
 	XFtpTask *t = (XFtpTask*)arg;
 	t->Read(bev);
 }
-void XFtpTask::WriteCB(bufferevent *bev, void *arg) {
+
+void XFtpTask::WriteCB(bufferevent *bev, void *arg) 
+{
 	XFtpTask *t = (XFtpTask*)arg;
 	t->Write(bev);
 }
 
 
-XFtpTask::~XFtpTask() {
+XFtpTask::~XFtpTask() 
+{
 	ClosePORT();
 }

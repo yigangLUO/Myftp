@@ -1,7 +1,6 @@
 #pragma once
 #include "XFtpTask.h"
-class XFtpRETR :
-	public XFtpTask
+class XFtpRETR : public XFtpTask
 {
 	void Parse(std::string type, std::string msg);
 	virtual void Event(bufferevent *, short);

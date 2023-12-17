@@ -17,10 +17,10 @@ public:
 	void Reg(std::string, XFtpTask *call);
 
 
-	XFtpServerCMD();
+	XFtpServerCMD() = default;
 	~XFtpServerCMD();
 private:
-	std::map<std::string, XFtpTask*>calls;
-	std::map<XFtpTask*, int>calls_del;
+	std::map<std::string, XFtpTask*> calls;
+	std::map<XFtpTask*, int> calls_del;
 };
 

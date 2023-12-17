@@ -9,13 +9,15 @@ using namespace std;
  
 
 
-void XFtpLIST::Write(bufferevent *bev) {
+void XFtpLIST::Write(bufferevent *bev) 
+{
 	testout("XFtpLIST::Write");
 	ResCMD("226 Transfer comlete");
 	ClosePORT();
 }
 
-void XFtpLIST::Event(bufferevent *bev, short events) {
+void XFtpLIST::Event(bufferevent *bev, short events) 
+{
 	testout("At XFtpLIST::Event");
 	if (events & (BEV_EVENT_EOF | BEV_EVENT_ERROR | BEV_EVENT_TIMEOUT)) {
 		ClosePORT();
@@ -24,7 +26,8 @@ void XFtpLIST::Event(bufferevent *bev, short events) {
 		cout << "XFtpLIST BEV_EVENT_CONNECTED" << endl;
 }
 
-void XFtpLIST::Parse(std::string type, std::string msg) {
+void XFtpLIST::Parse(std::string type, std::string msg) 
+{
 	testout("At XFtpLIST::Parse");
 	string resmsg = "";
 	if (type == "PWD") {
@@ -35,11 +38,11 @@ void XFtpLIST::Parse(std::string type, std::string msg) {
 		ResCMD(resmsg);
 	}
 	else if (type == "LIST") {
-		// 1 锟斤拷锟斤拷150锟斤拷锟斤拷馗锟�
-		// 2 锟斤拷锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷通锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟斤拷锟斤拷锟斤拷
-		// 3 锟斤拷锟斤拷226锟斤拷锟斤拷馗锟斤拷锟斤拷
-		// 4 锟截憋拷锟斤拷锟斤拷
-		// 锟斤拷锟斤拷通锟斤拷锟截革拷锟斤拷息 使锟斤拷锟斤拷锟斤拷通锟斤拷锟斤拷锟斤拷目录
+		// 1 闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氾拷150闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氳锛冨Δ鍛櫢闁跨噦鎷�
+		// 2 闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氬綊鏌ㄩ悢鍛婄伄闁归鍏橀弫鎾诲棘閵堝棗顏堕梺顐ｅ哺閺佹捇寮妶鍡楊伓闂佽法鍠愰弸濠氬箯閻戣В鍋撳鑸垫櫢闁哄倶鍊栫€氬綊鏌ㄩ悢鍛婄伄闁归鍏橀弫鎾诲棘閵堝棗顏堕梺顐ｅ哺閺佹捇寮妶鍡楊伓闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氬綊鏌ㄩ悢鍛婄伄闁归鍏橀弫鎾诲棘閵堝棗顏�
+		// 3 闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氾拷226闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氳锛冨Δ鍛櫢闁哄倶鍊栫€氬綊鏌ㄩ悢鍛婄伄闁瑰嚖鎷�
+		// 4 闂佽法鍠愰崺鍛村箟鐎ｎ偄顏堕梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€氾拷
+		// 闂佽法鍠愰弸濠氬箯閻戣姤鏅搁柡鍌樺€栫€氬綊鏌呭鑸垫櫢闁哄倶鍊栫€氬綊鏌ㄩ悢绋跨劵闂傚牃鏅滅€氬綊鏌ㄩ悢鍛婄伄闁圭兘鏀辨导锟� 濞达絽娼￠弫鎾诲棘閵堝棗顏堕梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€氬綊鏌呭鑸垫櫢闁哄倶鍊栫€氬綊鏌ㄩ悢鍛婄伄闁归鍏橀弫鎾诲棘閵堝棗顏堕柣鈺婂枛缂嶏拷
 		//  "-rwxrwxrwx 1 root root      418 Mar 21 16:10 XFtpFactory.cpp";
 		string path = cmdTask->rootDir + cmdTask->curDir;
 		testout("listpath: " << path);
@@ -48,15 +51,15 @@ void XFtpLIST::Parse(std::string type, std::string msg) {
 		ResCMD("150 Here coms the directory listing.");
 		Send(listdata);
 	}
-	else if (type == "CWD") //锟叫伙拷目录
+	else if (type == "CWD") //闂佽法鍠庤ぐ銊﹀濞嗘劕顏堕柣鈺婂枛缂嶏拷
 	{
-		//取锟斤拷锟斤拷锟斤拷锟叫碉拷路锟斤拷
+		//闁告瑦鐗犻弫鎾诲棘閵堝棗顏堕梺璺ㄥ枑閺嬪骞忛悜鑺ユ櫢闁哄倶鍊栫€氬綊鏌ㄩ悢宄板缓缁炬澘顦扮€氬湱鎹勯鐐存櫢闁哄倶鍊栫€氾拷
 		//CWD test\r\n
 		int pos = msg.rfind(" ") + 1;
-		//去锟斤拷锟斤拷尾锟斤拷\r\n
+		//闁告ê顭烽弫鎾诲棘閵堝棗顏堕梺璺ㄥ枑閺嬪骞忓畡鎵暡闂佽法鍠愰弸濠氬箯缁屽児\n
 		string path = msg.substr(pos, msg.size() - pos - 2);
 		string curDir = cmdTask->curDir;
-		if (path[0] == '/') //锟街讹拷路锟斤拷
+		if (path[0] == '/') //闂佽法鍠曢、婊呮媼鐟欏嫬顏堕悹渚灦閺佹捇寮妶鍡楊伓
 		{
 			curDir = path;
 		}
@@ -85,7 +88,7 @@ void XFtpLIST::Parse(std::string type, std::string msg) {
 
 		//cmdTask->curDir += 
 	}
-	else if (type == "CDUP") //锟截碉拷锟较诧拷目录
+	else if (type == "CDUP") //闂佽法鍠愰崺鍛枈婢跺顏堕梺璺ㄥ枙缁舵繄鎷犺鐎氬綊鎯勯鑲╃Э
 	{
 		cout << "msg:" << msg << endl;
 		cout << "cmdTask->curDir:" << cmdTask->curDir << endl;
@@ -95,7 +98,7 @@ void XFtpLIST::Parse(std::string type, std::string msg) {
 		// else {
 		// 	//  /Debug/test_ser.A3C61E95.tlog /Debug   /Debug/
 		// 	string path = cmdTask->curDir;
-		// 	//统一去锟斤拷锟斤拷尾锟斤拷 /
+		// 	//缂備胶鍠嶇粩鎾储婵犳碍鏅搁柡鍌樺€栫€氬綊鏌ㄩ悢鍛婄伄闁瑰嘲鍢查悢顒勬煥閻斿憡鐏柟鍑ゆ嫹 /
 		// 	////  /Debug/test_ser.A3C61E95.tlog /Debug  
 			
 		// 	if (path[path.size() - 1] == '/')
@@ -110,7 +113,7 @@ void XFtpLIST::Parse(std::string type, std::string msg) {
 		// }
 		//  /Debug/test_ser.A3C61E95.tlog /Debug   /Debug/
 			string path = cmdTask->curDir;
-			//统一去锟斤拷锟斤拷尾锟斤拷 /
+			//缂備胶鍠嶇粩鎾储婵犳碍鏅搁柡鍌樺€栫€氬綊鏌ㄩ悢鍛婄伄闁瑰嘲鍢查悢顒勬煥閻斿憡鐏柟鍑ゆ嫹 /
 			////  /Debug/test_ser.A3C61E95.tlog /Debug  
 			
 		if (path[path.size() - 1] == '/')

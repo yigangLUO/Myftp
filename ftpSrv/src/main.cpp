@@ -90,7 +90,8 @@ int main() {
 	
 	cout << "ev:" << ev << endl;
 	cout << "err:" << errno << endl;
-	if (base) {
+	if (base) 
+	{
 		cout << "begin to listen..." << endl;
 		cout << getpid() << endl;
 		cout << event_base_dispatch(base) << endl;

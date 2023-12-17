@@ -4,6 +4,7 @@
 #include <mutex>
 class XTask;
 struct event_base;
+
 class XThread
 {
 public:
@@ -25,15 +26,15 @@ public:
 	// 添加任务, 一个线程可以同时处理多个任务，共用一个event_base
 	void AddTack(XTask *);
 
-	XThread();
-	~XThread();
+	XThread() = default;
+	~XThread() = default;
 
 	// 线程编号
 	int id = 0;
 
 private:
 	int notify_send_fd = 0;
-	event_base *base = 0;
+	event_base *base = nullptr;
 	std::list<XTask*> tasks;
 	std::mutex tasks_mutex;
 };

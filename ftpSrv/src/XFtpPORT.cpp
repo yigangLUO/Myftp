@@ -12,17 +12,20 @@ void XFtpPORT::Parse(string type, string msg) {
 	// PORT n1,n2,n3,n4,n5,n6\r\n
 	// port = n5 * 256 + n6
 	
-	vector<string>vals;
+	vector<string> vals;
 	string tmp = "";
-	for (int i = 5; i < msg.size(); i++) {
-		if (msg[i] == ',' || msg[i] == '\r') {
+	for (int i = 5; i < msg.size(); i++) 
+	{
+		if (msg[i] == ',' || msg[i] == '\r') 
+		{
 			vals.push_back(tmp);
 			tmp = "";
 			continue;
 		}
 		tmp += msg[i];
 	}
-	if (vals.size() != 6) {
+	if (vals.size() != 6) 
+	{
 		ResCMD("501 Syntax error in parameters or arguments.");
 		return;
 	}

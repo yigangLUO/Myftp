@@ -11,18 +11,22 @@ using namespace std;
 
 #define BUFS 4096
 
-void XFtpServerCMD::Reg(std::string cmd, XFtpTask *call) {
+void XFtpServerCMD::Reg(std::string cmd, XFtpTask *call) 
+{
 	testout("At XFtpServerCMD::Reg");
-	if (!call) {
+	if (!call) 
+	{
 		cout << "XFtpServerCMD::Reg call is null " << endl;
 		return;
 	}
-	if (cmd.empty()) {
+	if (cmd.empty()) 
+	{
 		cout << "XFtpServerCMD::Reg cmd is null " << endl;
 		return;
 	}
 	// 已经注册的是否覆盖，不覆盖，提示错误
-	if (calls.find(cmd) != calls.end()) {
+	if (calls.find(cmd) != calls.end()) 
+	{
 		cout << cmd << " is alredy register" << endl;
 		return;
 	}
@@ -33,14 +37,16 @@ void XFtpServerCMD::Reg(std::string cmd, XFtpTask *call) {
 	calls_del[call] = 0;
 }
 
-void XFtpServerCMD::Event(bufferevent *bev, short events) {
+void XFtpServerCMD::Event(bufferevent *bev, short events) 
+{
 	testout("At XFtpServerCMD::Event");
 	if (events & (BEV_EVENT_EOF | BEV_EVENT_ERROR | BEV_EVENT_TIMEOUT)) {
 		delete this;
 	}
 }
 
-void XFtpServerCMD::Read(bufferevent *bev) {
+void XFtpServerCMD::Read(bufferevent *bev) 
+{
 	cout << endl;
 	testout("At XFtpServerCMD::Read");
 	char buf[BUFS] = { 0 };
@@ -72,10 +78,11 @@ void XFtpServerCMD::Read(bufferevent *bev) {
 	}
 }
 
-bool XFtpServerCMD::Init() {
+bool XFtpServerCMD::Init() 
+{
 	testout("At XFtpServerCMD::Init");
 
-	// 在线程的base里添加一个缓冲区对sock的缓冲事件，这就是命令通道
+	// 在线程的base里添加一个缓冲区对socket的缓冲事件，这就是命令通道
 	bufferevent *bev = bufferevent_socket_new(base, sock, BEV_OPT_CLOSE_ON_FREE);
 	if (!bev) {
 		delete this;
@@ -95,9 +102,6 @@ bool XFtpServerCMD::Init() {
 	Setcb(bev);
 
 	return true;
-}
-
-XFtpServerCMD::XFtpServerCMD() {
 }
 
 XFtpServerCMD::~XFtpServerCMD() {
