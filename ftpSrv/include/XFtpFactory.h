@@ -5,7 +5,7 @@
 class XFtpFactory
 {
 public:
-	static XFtpFactory*Get() 
+	static XFtpFactory *Get() 
 	{
 		static XFtpFactory f;
 		return &f;
