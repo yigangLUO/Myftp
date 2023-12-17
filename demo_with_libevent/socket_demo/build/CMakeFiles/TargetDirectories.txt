@@ -1,0 +1,4 @@
+/home/lyg/ftp/demo_with_libevent/socket_demo/build/CMakeFiles/server.dir
+/home/lyg/ftp/demo_with_libevent/socket_demo/build/CMakeFiles/client.dir
+/home/lyg/ftp/demo_with_libevent/socket_demo/build/CMakeFiles/edit_cache.dir
+/home/lyg/ftp/demo_with_libevent/socket_demo/build/CMakeFiles/rebuild_cache.dir

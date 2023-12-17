@@ -42,7 +42,8 @@ int main(int argc, const char* argv[])
     event_add(ev, NULL);
 
     // 事件循环
-    event_base_dispatch(base);
+    // event_base_dispatch(base);
+    event_base_loop(base, EVLOOP_ONCE);
 
     // 释放资源
     event_free(ev);
