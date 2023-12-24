@@ -11,6 +11,7 @@ public:
 	virtual void Write(bufferevent *);
 
 private:
+	// 获取linux文件基本属性列表
 	string GetListData(string path); 
 };
 

@@ -105,7 +105,7 @@ void XThread::Activate()
 		cerr << "XThread::Activate() fail" << endl;
 	}
 	// 获取任务，并初始化
-	XTask *t = NULL;
+	XTask *task = NULL;
 	
 	std::lock_guard<std::mutex> lock(tasks_mutex);
 
@@ -114,16 +114,16 @@ void XThread::Activate()
 		return;
 	}
 
-	t = tasks.front();
+	task = tasks.front();
 	tasks.pop_front();
 
-	t->Init();
+	task->Init();
 }
 
 /*
  *  添加任务
  */
-void XThread::AddTack(XTask *t) 
+void XThread::AddTask(XTask *t) 
 {
 	if (!t) 
 		return;

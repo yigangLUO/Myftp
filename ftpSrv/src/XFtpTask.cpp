@@ -8,9 +8,9 @@
 #include <iostream>
 using namespace std;
 
-void XFtpTask::ConnectoPORT() 
+void XFtpTask::ConnectToPORT() 
 {
-	testout("At XFtpTask::ConnectoPORT");
+	testout("At XFtpTask::ConnectToPORT");
 	if (cmdTask->ip.empty() || cmdTask->port <= 0 || !cmdTask->base) 
 	{
 		cout << "ConnectPORT failed" << endl;
@@ -77,9 +77,11 @@ void XFtpTask::Send(const char *data, size_t datasize) {
 void XFtpTask::ResCMD(string msg) 
 {
 	testout("At XFtpTask::ResCMD");
-	if (!cmdTask || !cmdTask->bev) return;
+	if (!cmdTask || !cmdTask->bev) 
+		return;
 	cout << "ResCMD: " << msg << endl << flush;
-	if (msg[msg.size() - 1] != '\n') {
+	if (msg[msg.size() - 1] != '\n') 
+	{
 		msg += "\r\n";
 	}
 	bufferevent_write(cmdTask->bev, msg.c_str(), msg.size());

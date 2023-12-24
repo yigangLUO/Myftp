@@ -12,18 +12,18 @@ using namespace std;
  */
 void XThreadPool::Dispatch(XTask *task) 
 {
-	testout("main thread At XThreadPoll::dispatch()");
+	testout("main thread At XThreadPool::dispatch()");
 	
 	if (!task) 
 		return;
 	int tid = (lastThread + 1) % threadCount;
 	lastThread = tid;
-	XThread *t = threads[tid];
+	XThread *xthread = threads[tid];
 	
 	// 添加任务
-	t->AddTack(task);
+	xthread->AddTask(task);
 	// 激活线程
-	t->Activate();
+	xthread->Activate();
 }
 
 /*

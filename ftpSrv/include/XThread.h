@@ -24,7 +24,7 @@ public:
 	void Activate();
 
 	// 添加任务, 一个线程可以同时处理多个任务，共用一个event_base
-	void AddTack(XTask *);
+	void AddTask(XTask *);
 
 	XThread() = default;
 	~XThread() = default;

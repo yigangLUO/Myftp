@@ -84,7 +84,8 @@ bool XFtpServerCMD::Init()
 
 	// 在线程的base里添加一个缓冲区对socket的缓冲事件，这就是命令通道
 	bufferevent *bev = bufferevent_socket_new(base, sock, BEV_OPT_CLOSE_ON_FREE);
-	if (!bev) {
+	if (!bev) 
+	{
 		delete this;
 		return false;
 	}
@@ -94,6 +95,7 @@ bool XFtpServerCMD::Init()
 	bufferevent_set_timeouts(bev, &t, 0);
 
 	string msg = "220 Welcome to XFtpServer\r\n";
+	std::cout << msg << endl;
 	bufferevent_write(bev, msg.c_str(), msg.size());
 
 	this->cmdTask = this;

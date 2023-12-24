@@ -6,7 +6,10 @@ class XFtpRETR : public XFtpTask
 	virtual void Event(bufferevent *, short);
 	virtual void Write(bufferevent *);
 
-	bool Init() { return true; }
+	bool Init() 
+	{ 
+		return true; 
+	}
 
 
 private:

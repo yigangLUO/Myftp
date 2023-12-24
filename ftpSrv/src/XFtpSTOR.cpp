@@ -36,7 +36,7 @@ void XFtpSTOR::Parse(std::string type, std::string msg) {
 	testout("filepath:[" << path << "]");
 	fp = fopen(path.c_str(), "wb");
 	if (fp) {
-		ConnectoPORT();
+		ConnectToPORT();
 		ResCMD("125 File OK");
 		bufferevent_trigger(bev, EV_READ, 0);
 	}

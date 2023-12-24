@@ -38,7 +38,8 @@ using std::string;
 /*
  *  接待连接的回调函数
  */
-void listen_cb(struct evconnlistener *ev, evutil_socket_t s, struct sockaddr *addr, int socklen, void *arg) {
+void listen_cb(struct evconnlistener *ev, evutil_socket_t s, struct sockaddr *addr, int socklen, void *arg)
+{
 	testout("main thread At listen_cb");
 	sockaddr_in *sin = (sockaddr_in*)addr;
 	/*

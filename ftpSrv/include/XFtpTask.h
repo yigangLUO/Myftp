@@ -24,7 +24,7 @@ public:
 	void ResCMD(string msg);
 
 	// 连接到PORT模式（主动模式）
-	void ConnectoPORT();
+	void ConnectToPORT();
 
 	void ClosePORT();
 

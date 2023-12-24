@@ -1,7 +1,6 @@
 #pragma once
 #include "XFtpTask.h"
-class XFtpSTOR :
-	public XFtpTask
+class XFtpSTOR : public XFtpTask
 {
 
 public:
